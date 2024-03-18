@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import avLogo from "@/assets/av.svg";
 import ipbLogo from "@/assets/ipb.svg";
 import utfprLogo from "@/assets/utfpr.svg";
+import bpiLogo from "@/assets/bpi.svg";
+import fctLogo from "@/assets/fct.svg";
+import flcLogo from "@/assets/flc.svg";
 
 import { motion } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
@@ -16,25 +19,42 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePageComponent() {
-  const dynamicWords = useMemo(() => ["hidratação", "reparação", "rejuvenecimento", "cuidado" ], []);
+  const dynamicWords = useMemo(
+    () => ["hidratação", "reparação", "rejuvenecimento", "cuidado"],
+    []
+  );
   const [currentWord, setCurrentWord] = useState("");
-  const [typingState, setTypingState] = useState({ i: 0, wordIndex: 0, deleting: false });
+  const [typingState, setTypingState] = useState({
+    i: 0,
+    wordIndex: 0,
+    deleting: false,
+  });
 
   useEffect(() => {
     const { i, wordIndex, deleting } = typingState;
     const updateTyping = () => {
       if (!deleting) {
         if (i < dynamicWords[wordIndex].length) {
-          setCurrentWord(prevState => prevState + dynamicWords[wordIndex].charAt(i));
-          setTypingState(prevState => ({ ...prevState, i: prevState.i + 1 }));
+          setCurrentWord(
+            (prevState) => prevState + dynamicWords[wordIndex].charAt(i)
+          );
+          setTypingState((prevState) => ({ ...prevState, i: prevState.i + 1 }));
         } else {
-          setTimeout(() => setTypingState(prevState => ({ ...prevState, deleting: true })), 2000);
+          setTimeout(
+            () =>
+              setTypingState((prevState) => ({ ...prevState, deleting: true })),
+            2000
+          );
         }
       } else {
         if (currentWord.length > 0) {
           setCurrentWord(currentWord.slice(0, -1));
         } else {
-          setTypingState({ i: 0, wordIndex: (wordIndex + 1) % dynamicWords.length, deleting: false });
+          setTypingState({
+            i: 0,
+            wordIndex: (wordIndex + 1) % dynamicWords.length,
+            deleting: false,
+          });
         }
       }
     };
@@ -63,20 +83,33 @@ function HomePageComponent() {
         </div>
         <Button variant="ringHover" className="inline-block w-auto" asChild>
           <Link to="/form">
-          Faça o teste agora e <b>descubra</b>
+            Faça o teste agora e <b>descubra</b>
           </Link>
         </Button>
       </div>
-      <div className="flex flex-col md:flex-row gap-10 items-center mb-24">
-        <a href="https://react.dev" target="_blank">
-          <img src={avLogo} alt="AV logo" className="h-20" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={ipbLogo} alt="IPB logo" className="h-14" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={utfprLogo} alt="UTFPR logo" className="h-16" />
-        </a>
+      <div className="flex flex-col items-center gap-10">
+        <div className="flex flex-col md:flex-row gap-10 items-center">
+          <a href="https://react.dev" target="_blank">
+            <img src={bpiLogo} alt="BPI logo" className="h-12" />
+          </a>
+          <a href="https://react.dev" target="_blank">
+            <img src={fctLogo} alt="FCT logo" className="h-14" />
+          </a>
+          <a href="https://react.dev" target="_blank">
+            <img src={flcLogo} alt="FLC logo" className="h-12" />
+          </a>
+        </div>
+        <div className="flex flex-col md:flex-row gap-10 items-center mb-24">
+          <a href="https://react.dev" target="_blank">
+            <img src={avLogo} alt="AV logo" className="h-16" />
+          </a>
+          <a href="https://react.dev" target="_blank">
+            <img src={ipbLogo} alt="IPB logo" className="h-12" />
+          </a>
+          <a href="https://react.dev" target="_blank">
+            <img src={utfprLogo} alt="UTFPR logo" className="h-12" />
+          </a>
+        </div>
       </div>
     </div>
   );
