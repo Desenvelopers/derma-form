@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePageComponent() {
-  const dynamicWords = useMemo(() => ["normal", "oleosa", "mista", "seca", "sensível"], []);
+  const dynamicWords = useMemo(() => ["hidratação", "reparação", "rejuvenecimento", "cuidado" ], []);
   const [currentWord, setCurrentWord] = useState("");
   const [typingState, setTypingState] = useState({ i: 0, wordIndex: 0, deleting: false });
 
@@ -49,7 +49,7 @@ function HomePageComponent() {
       <div className="flex flex-col gap-8 items-center h-[50vh] justify-end">
         <div className="flex flex-col items-center">
           <h1 className="text-center font-display text-3xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-5xl md:leading-[5rem]">
-            Sua pele é
+            Sua pele precisa de
             <motion.span
               key={currentWord}
               initial={{ opacity: 1 }}
@@ -57,7 +57,7 @@ function HomePageComponent() {
               exit={{ opacity: 0 }}
               className="inline-block ml-2"
             >
-              {currentWord}?
+              {currentWord}
             </motion.span>
           </h1>
         </div>
