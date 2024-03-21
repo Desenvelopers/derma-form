@@ -111,6 +111,7 @@ function HomePageComponent() {
           </a>
         </div>
       </div>
+      <div> footer </div>
     </div>
   );
 }
